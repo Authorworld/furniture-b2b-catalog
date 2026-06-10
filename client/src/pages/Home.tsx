@@ -20,22 +20,37 @@ export default function Home() {
   const [allFactories, setAllFactories] = useState<Factory[]>(initialFactories);
   const [countryFilter, setCountryFilter] = useState<CountryFilter>('all');
   const [segmentFilter, setSegmentFilter] = useState<SegmentFilter>('all');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [importDialogOpen, setImportDialogOpen] = useState(false);
+
+  // Получаем все уникальные специализации
+  const allSpecializations = useMemo(() => {
+    const specs = new Set<string>();
+    allFactories.forEach(f => f.specialization.forEach(s => specs.add(s)));
+    return Array.from(specs).sort();
+  }, [allFactories]);
 
   const filteredFactories = useMemo(() => {
     return allFactories.filter((factory) => {
       const matchCountry = countryFilter === 'all' || factory.country === countryFilter;
       const matchSegment = segmentFilter === 'all' || factory.segment === segmentFilter;
+      const matchTags = selectedTags.length === 0 || selectedTags.every(tag => factory.specialization.includes(tag));
       const matchSearch =
         factory.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         factory.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
         factory.specialization.some((spec) =>
           spec.toLowerCase().includes(searchQuery.toLowerCase())
         );
-      return matchCountry && matchSegment && matchSearch;
+      return matchCountry && matchSegment && matchTags && matchSearch;
     });
-  }, [countryFilter, segmentFilter, searchQuery]);
+  }, [countryFilter, segmentFilter, selectedTags, searchQuery, allFactories]);
+
+  const toggleTag = (tag: string) => {
+    setSelectedTags(prev =>
+      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+    );
+  };
 
   const copyToClipboard = (text: string, label: string) => {
     navigator.clipboard.writeText(text);
@@ -100,6 +115,33 @@ export default function Home() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full"
               />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-foreground mb-3">
+              Специализация (теги)
+            </label>
+            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide no-scrollbar">
+              <Button
+                variant={selectedTags.length === 0 ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setSelectedTags([])}
+                className="whitespace-nowrap rounded-full"
+              >
+                Все теги
+              </Button>
+              {allSpecializations.map((tag) => (
+                <Button
+                  key={tag}
+                  variant={selectedTags.includes(tag) ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => toggleTag(tag)}
+                  className="whitespace-nowrap rounded-full transition-all duration-200"
+                >
+                  {tag}
+                </Button>
+              ))}
             </div>
           </div>
 
