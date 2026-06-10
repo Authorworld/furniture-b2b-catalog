@@ -133,13 +133,33 @@ export default function FactoryDetail() {
             {/* Specialization */}
             <Card className="p-6">
               <h2 className="text-xl font-serif font-bold text-primary mb-4">Специализация</h2>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-6">
                 {factory.specialization.map((spec, index) => (
                   <Badge key={index} variant="secondary" className="bg-slate-100 text-slate-800">
                     {spec}
                   </Badge>
                 ))}
               </div>
+
+              {factory.projects && factory.projects.length > 0 && (
+                <div className="mt-8">
+                  <h3 className="text-lg font-serif font-bold text-primary mb-4">Примеры работ</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {factory.projects.map((project, index) => (
+                      <div key={index} className="group relative overflow-hidden rounded-xl border border-border">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <p className="text-white font-medium text-sm">{project.title}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </Card>
           </div>
 

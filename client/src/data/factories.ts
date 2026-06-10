@@ -10,6 +10,10 @@ export interface Factory {
   email?: string;
   website: string;
   established?: string;
+  projects?: {
+    title: string;
+    image: string;
+  }[];
 }
 
 export const segments = {
@@ -36,6 +40,11 @@ export const factories: Factory[] = [
     email: 'info@marya.ru',
     website: 'https://www.marya.ru',
     established: '1999',
+    projects: [
+      { title: 'Кухня Mix22', image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Гардеробная система', image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Ванная Nicolle', image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '2',
@@ -49,6 +58,11 @@ export const factories: Factory[] = [
     email: 'client@dyatkovo.ru',
     website: 'https://dyatkovo.ru',
     established: '1926',
+    projects: [
+      { title: 'Коллекция Alivio', image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Гостиная Turandot', image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Спальня Toki', image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '3',
@@ -62,6 +76,11 @@ export const factories: Factory[] = [
     email: 'info@zov.by',
     website: 'https://zov.by',
     established: '1997',
+    projects: [
+      { title: 'Кухня из массива дуба', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Современная столовая', image: 'https://images.unsplash.com/photo-1617806118233-f8e187c42b94?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Скандинавская кухня', image: 'https://images.unsplash.com/photo-1556912177-386866f81498?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '4',
@@ -88,6 +107,10 @@ export const factories: Factory[] = [
     email: 'info@mrdoors.ru',
     website: 'https://www.mrdoors.ru',
     established: '1996',
+    projects: [
+      { title: 'Гардеробная на заказ', image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Индивидуальная гостиная', image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '6',
@@ -101,6 +124,9 @@ export const factories: Factory[] = [
     email: 'info@lazurit.com',
     website: 'https://lazurit.com',
     established: '2004',
+    projects: [
+      { title: 'Спальный гарнитур', image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '7',
@@ -321,6 +347,10 @@ export const factories: Factory[] = [
     email: 'help@askona.ru',
     website: 'https://www.askona.ru',
     established: '1990',
+    projects: [
+      { title: 'Кровать Ergomotion', image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Ортопедический матрас', image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '24',
@@ -360,6 +390,10 @@ export const factories: Factory[] = [
     email: 'felix@felix.ru',
     website: 'https://www.felix.ru',
     established: '1991',
+    projects: [
+      { title: 'Кабинет Атташе', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Офис Open Space', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '27',
@@ -438,6 +472,10 @@ export const factories: Factory[] = [
     email: 'mail@giulianovars.ru',
     website: 'https://giulianovars.ru',
     established: '1999',
+    projects: [
+      { title: 'Кухня Ceramic', image: 'https://images.unsplash.com/photo-1556912177-386866f81498?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Система Loft', image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '33',
