@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { factories } from '@/data/factories';
-import { ArrowLeft, Phone, Mail, Globe, MapPin, Building2, Calendar, Copy } from 'lucide-react';
+import { ArrowLeft, Phone, Mail, Globe, MapPin, Building2, Calendar, Copy, Users, Maximize, Clock, ShieldCheck, Box, ExternalLink } from 'lucide-react';
 import { toast } from 'sonner';
 import { FeedbackForm } from '@/components/FeedbackForm';
 
@@ -138,8 +138,81 @@ export default function FactoryDetail() {
             {/* Description */}
             <Card className="p-6">
               <h2 className="text-xl font-serif font-bold text-primary mb-4">О фабрике</h2>
-              <p className="text-secondary-foreground leading-relaxed">{factory.description}</p>
+              <p className="text-secondary-foreground leading-relaxed whitespace-pre-line">{factory.description}</p>
             </Card>
+
+            {/* Production Characteristics */}
+            {(factory.employees || factory.area || factory.productionTime || factory.warranty || (factory.materials && factory.materials.length > 0)) && (
+              <Card className="p-6">
+                <h2 className="text-xl font-serif font-bold text-primary mb-4">Производственные характеристики</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {factory.employees && (
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center shrink-0">
+                        <Users size={20} className="text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-secondary-foreground">Сотрудников</p>
+                        <p className="font-semibold">{factory.employees}</p>
+                      </div>
+                    </div>
+                  )}
+                  {factory.area && (
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center shrink-0">
+                        <Maximize size={20} className="text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-secondary-foreground">Площадь производства</p>
+                        <p className="font-semibold">{factory.area}</p>
+                      </div>
+                    </div>
+                  )}
+                  {factory.productionTime && (
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center shrink-0">
+                        <Clock size={20} className="text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-secondary-foreground">Срок изготовления</p>
+                        <p className="font-semibold">{factory.productionTime}</p>
+                      </div>
+                    </div>
+                  )}
+                  {factory.warranty && (
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center shrink-0">
+                        <ShieldCheck size={20} className="text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-secondary-foreground">Гарантия</p>
+                        <p className="font-semibold">{factory.warranty}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {factory.materials && factory.materials.length > 0 && (
+                  <div className="mt-6 pt-6 border-t border-border">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-lg bg-slate-50 flex items-center justify-center shrink-0">
+                        <Box size={20} className="text-primary" />
+                      </div>
+                      <div>
+                        <p className="text-xs text-secondary-foreground mb-2">Основные материалы</p>
+                        <div className="flex flex-wrap gap-2">
+                          {factory.materials.map((material, idx) => (
+                            <Badge key={idx} variant="secondary" className="bg-slate-100 text-slate-700 hover:bg-slate-200 border-none px-3">
+                              {material}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </Card>
+            )}
 
             {/* Projects Card */}
             {factory.projects && factory.projects.length > 0 && (
@@ -147,16 +220,26 @@ export default function FactoryDetail() {
                 <h2 className="text-xl font-serif font-bold text-primary mb-4">Примеры работ</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {factory.projects.map((project, index) => (
-                    <div key={index} className="group relative overflow-hidden rounded-xl border border-border">
+                    <a
+                      key={index}
+                      href={project.link || factory.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group relative overflow-hidden rounded-xl border border-border cursor-pointer block"
+                    >
                       <img
                         src={project.image}
                         alt={project.title}
-                        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <p className="text-white font-medium text-sm">{project.title}</p>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-4 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity">
+                        <p className="text-white font-medium text-sm mb-1">{project.title}</p>
+                        <div className="flex items-center gap-1 text-white/80 text-xs font-light">
+                          <span>Смотреть на сайте</span>
+                          <ExternalLink size={12} />
+                        </div>
                       </div>
-                    </div>
+                    </a>
                   ))}
                 </div>
               </Card>

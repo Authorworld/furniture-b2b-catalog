@@ -27,6 +27,7 @@ export default function Home() {
   const [countryFilter, setCountryFilter] = useState<CountryFilter>('all');
   const [segmentFilter, setSegmentFilter] = useState<SegmentFilter>('all');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [selectedMaterials, setSelectedMaterials] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [importDialogOpen, setImportDialogOpen] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -38,6 +39,13 @@ export default function Home() {
     const specs = new Set<string>();
     allFactories.forEach(f => f.specialization.forEach(s => specs.add(s)));
     return Array.from(specs).sort();
+  }, [allFactories]);
+
+  // Получаем все уникальные материалы
+  const allMaterials = useMemo(() => {
+    const materials = new Set<string>();
+    allFactories.forEach(f => f.materials?.forEach(m => materials.add(m)));
+    return Array.from(materials).sort();
   }, [allFactories]);
 
   const checkScroll = () => {
@@ -69,19 +77,31 @@ export default function Home() {
       const matchCountry = countryFilter === 'all' || factory.country === countryFilter;
       const matchSegment = segmentFilter === 'all' || factory.segment === segmentFilter;
       const matchTags = selectedTags.length === 0 || selectedTags.every(tag => factory.specialization.includes(tag));
+      const matchMaterials = selectedMaterials.length === 0 ||
+        (factory.materials && selectedMaterials.every(mat => factory.materials?.includes(mat)));
+
+      const searchLower = searchQuery.toLowerCase();
       const matchSearch =
-        factory.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        factory.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        factory.specialization.some((spec) =>
-          spec.toLowerCase().includes(searchQuery.toLowerCase())
-        );
-      return matchCountry && matchSegment && matchTags && matchSearch;
+        factory.name.toLowerCase().includes(searchLower) ||
+        factory.city.toLowerCase().includes(searchLower) ||
+        factory.description.toLowerCase().includes(searchLower) ||
+        (factory.established && factory.established.includes(searchQuery)) ||
+        factory.specialization.some((spec) => spec.toLowerCase().includes(searchLower)) ||
+        factory.materials?.some((mat) => mat.toLowerCase().includes(searchLower));
+
+      return matchCountry && matchSegment && matchTags && matchMaterials && matchSearch;
     });
-  }, [countryFilter, segmentFilter, selectedTags, searchQuery, allFactories]);
+  }, [countryFilter, segmentFilter, selectedTags, selectedMaterials, searchQuery, allFactories]);
 
   const toggleTag = (tag: string) => {
     setSelectedTags(prev =>
       prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+    );
+  };
+
+  const toggleMaterial = (material: string) => {
+    setSelectedMaterials(prev =>
+      prev.includes(material) ? prev.filter(m => m !== material) : [...prev, material]
     );
   };
 
@@ -208,6 +228,33 @@ export default function Home() {
                   </Button>
                 </div>
               )}
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-foreground">
+              Материалы
+            </label>
+            <div className="flex gap-2 flex-wrap">
+              <Button
+                variant={selectedMaterials.length === 0 ? 'default' : 'outline'}
+                size="sm"
+                onClick={() => setSelectedMaterials([])}
+                className="rounded-full"
+              >
+                Все материалы
+              </Button>
+              {allMaterials.map((material) => (
+                <Button
+                  key={material}
+                  variant={selectedMaterials.includes(material) ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => toggleMaterial(material)}
+                  className="rounded-full transition-all duration-200"
+                >
+                  {material}
+                </Button>
+              ))}
             </div>
           </div>
 

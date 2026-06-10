@@ -13,6 +13,11 @@ export const exportToCSV = (factories: Factory[], filename: string = 'factories.
     'Специализация': factory.specialization.join('; '),
     'Сегмент': factory.segment === 'economy' ? 'Эконом' : factory.segment === 'middle' ? 'Средний' : 'Премиум',
     'Год основания': factory.established || '',
+    'Сотрудников': factory.employees || '',
+    'Площадь (м2)': factory.area || '',
+    'Срок пр-ва': factory.productionTime || '',
+    'Гарантия': factory.warranty || '',
+    'Материалы': factory.materials ? factory.materials.join('; ') : '',
     'Примеры работ': factory.projects ? factory.projects.map(p => `${p.title}|${p.image}`).join('; ') : '',
     'Описание': factory.description,
   }));
@@ -56,6 +61,11 @@ export const exportToExcel = (factories: Factory[], filename: string = 'factorie
     'Специализация': factory.specialization.join('; '),
     'Сегмент': factory.segment === 'economy' ? 'Эконом' : factory.segment === 'middle' ? 'Средний' : 'Премиум',
     'Год основания': factory.established || '',
+    'Сотрудников': factory.employees || '',
+    'Площадь (м2)': factory.area || '',
+    'Срок пр-ва': factory.productionTime || '',
+    'Гарантия': factory.warranty || '',
+    'Материалы': factory.materials ? factory.materials.join('; ') : '',
     'Примеры работ': factory.projects ? factory.projects.map(p => `${p.title}|${p.image}`).join('; ') : '',
     'Описание': factory.description,
   }));

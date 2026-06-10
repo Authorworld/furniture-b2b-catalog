@@ -72,6 +72,14 @@ export const importFromCSV = (file: File): Promise<ImportedFactory[]> => {
             segment: normalizeSegment(row['Сегмент'] || row['Segment'] || ''),
             description: row['Описание'] || row['Description'] || '',
             established: row['Год основания'] ? String(row['Год основания']) : undefined,
+            employees: row['Сотрудников'] || row['Employees'],
+            area: row['Площадь (м2)'] || row['Area'],
+            productionTime: row['Срок пр-ва'] || row['Production Time'],
+            warranty: row['Гарантия'] || row['Warranty'],
+            materials: (row['Материалы'] || row['Materials'] || '')
+              .split(';')
+              .map((m: string) => m.trim())
+              .filter((m: string) => m),
             projects: (row['Примеры работ'] || row['Projects'] || '')
               .split(';')
               .map((p: string) => {
@@ -141,6 +149,21 @@ export const importFromExcel = (file: File): Promise<ImportedFactory[]> => {
           segment: normalizeSegment(row['Сегмент'] || row['Segment'] || ''),
           description: row['Описание'] || row['Description'] || '',
           established: row['Год основания'] ? String(row['Год основания']) : undefined,
+          employees: row['Сотрудников'] || row['Employees'],
+          area: row['Площадь (м2)'] || row['Area'],
+          productionTime: row['Срок пр-ва'] || row['Production Time'],
+          warranty: row['Гарантия'] || row['Warranty'],
+          materials: typeof row['Материалы'] === 'string'
+            ? row['Материалы']
+                .split(';')
+                .map((m: string) => m.trim())
+                .filter((m: string) => m)
+            : typeof row['Materials'] === 'string'
+              ? row['Materials']
+                  .split(';')
+                  .map((m: string) => m.trim())
+                  .filter((m: string) => m)
+              : [],
           projects: typeof row['Примеры работ'] === 'string'
             ? row['Примеры работ']
                 .split(';')
