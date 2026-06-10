@@ -115,6 +115,8 @@ export function ImportDialog({ open, onOpenChange, onImport }: ImportDialogProps
               <li>Сайт</li>
               <li>Специализация (разделить точкой с запятой)</li>
               <li>Сегмент (Эконом/Средний/Премиум)</li>
+              <li>Год основания</li>
+              <li>Примеры работ (Формат: Название|URL; Название|URL)</li>
               <li>Описание</li>
             </ul>
           </div>

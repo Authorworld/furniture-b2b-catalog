@@ -71,7 +71,14 @@ export const importFromCSV = (file: File): Promise<ImportedFactory[]> => {
               .filter((s: string) => s),
             segment: normalizeSegment(row['Сегмент'] || row['Segment'] || ''),
             description: row['Описание'] || row['Description'] || '',
-            established: row['Год основания'] ? parseInt(row['Год основания']) : undefined,
+            established: row['Год основания'] ? String(row['Год основания']) : undefined,
+            projects: (row['Примеры работ'] || row['Projects'] || '')
+              .split(';')
+              .map((p: string) => {
+                const [title, image] = p.split('|').map(s => s.trim());
+                return title && image ? { title, image } : null;
+              })
+              .filter((p: any) => p),
           };
 
           factories.push(factory);
@@ -133,7 +140,24 @@ export const importFromExcel = (file: File): Promise<ImportedFactory[]> => {
               : [],
           segment: normalizeSegment(row['Сегмент'] || row['Segment'] || ''),
           description: row['Описание'] || row['Description'] || '',
-          established: row['Год основания'] ? parseInt(row['Год основания']) : undefined,
+          established: row['Год основания'] ? String(row['Год основания']) : undefined,
+          projects: typeof row['Примеры работ'] === 'string'
+            ? row['Примеры работ']
+                .split(';')
+                .map((p: string) => {
+                  const [title, image] = p.split('|').map(s => s.trim());
+                  return title && image ? { title, image } : null;
+                })
+                .filter((p: any) => p)
+            : typeof row['Projects'] === 'string'
+              ? row['Projects']
+                  .split(';')
+                  .map((p: string) => {
+                    const [title, image] = p.split('|').map(s => s.trim());
+                    return title && image ? { title, image } : null;
+                  })
+                  .filter((p: any) => p)
+              : [],
         }));
 
         resolve(factories);

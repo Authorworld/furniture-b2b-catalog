@@ -12,6 +12,8 @@ export const exportToCSV = (factories: Factory[], filename: string = 'factories.
     'Сайт': factory.website,
     'Специализация': factory.specialization.join('; '),
     'Сегмент': factory.segment === 'economy' ? 'Эконом' : factory.segment === 'middle' ? 'Средний' : 'Премиум',
+    'Год основания': factory.established || '',
+    'Примеры работ': factory.projects ? factory.projects.map(p => `${p.title}|${p.image}`).join('; ') : '',
     'Описание': factory.description,
   }));
 
@@ -53,6 +55,8 @@ export const exportToExcel = (factories: Factory[], filename: string = 'factorie
     'Сайт': factory.website,
     'Специализация': factory.specialization.join('; '),
     'Сегмент': factory.segment === 'economy' ? 'Эконом' : factory.segment === 'middle' ? 'Средний' : 'Премиум',
+    'Год основания': factory.established || '',
+    'Примеры работ': factory.projects ? factory.projects.map(p => `${p.title}|${p.image}`).join('; ') : '',
     'Описание': factory.description,
   }));
 
@@ -71,6 +75,8 @@ export const exportToExcel = (factories: Factory[], filename: string = 'factorie
     { wch: 25 }, // Сайт
     { wch: 30 }, // Специализация
     { wch: 12 }, // Сегмент
+    { wch: 15 }, // Год основания
+    { wch: 40 }, // Примеры работ
     { wch: 50 }, // Описание
   ];
   worksheet['!cols'] = colWidths;

@@ -1,16 +1,22 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { factories as initialFactories, segments, countries, Factory } from '@/data/factories';
-import { Copy, MapPin, Phone, Globe, Mail, Download, Upload, ChevronRight } from 'lucide-react';
+import { Copy, MapPin, Phone, Globe, Mail, Download, Upload, ChevronRight, Info, ChevronLeft } from 'lucide-react';
 import { toast } from 'sonner';
 import { exportToCSV, exportToExcel } from '@/lib/exportUtils';
 import { ImportDialog } from '@/components/ImportDialog';
 import { ContactFormDialog } from '@/components/ContactFormDialog';
 import { ImportedFactory } from '@/lib/importUtils';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type CountryFilter = 'all' | 'Russia' | 'Belarus';
 type SegmentFilter = 'all' | 'economy' | 'middle' | 'premium';
@@ -23,6 +29,9 @@ export default function Home() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [importDialogOpen, setImportDialogOpen] = useState(false);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [showLeftArrow, setShowLeftArrow] = useState(false);
+  const [showRightArrow, setShowRightArrow] = useState(true);
 
   // Получаем все уникальные специализации
   const allSpecializations = useMemo(() => {
@@ -30,6 +39,30 @@ export default function Home() {
     allFactories.forEach(f => f.specialization.forEach(s => specs.add(s)));
     return Array.from(specs).sort();
   }, [allFactories]);
+
+  const checkScroll = () => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollContainerRef.current;
+      setShowLeftArrow(scrollLeft > 10);
+      setShowRightArrow(scrollLeft < scrollWidth - clientWidth - 10);
+    }
+  };
+
+  useEffect(() => {
+    checkScroll();
+    window.addEventListener('resize', checkScroll);
+    return () => window.removeEventListener('resize', checkScroll);
+  }, [allSpecializations]);
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = 200;
+      scrollContainerRef.current.scrollBy({
+        left: direction === 'left' ? -scrollAmount : scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const filteredFactories = useMemo(() => {
     return allFactories.filter((factory) => {
@@ -118,30 +151,63 @@ export default function Home() {
             </div>
           </div>
 
-          <div>
+          <div className="relative group">
             <label className="block text-sm font-medium text-foreground mb-3">
-              Специализация (теги)
+              Специализация
             </label>
-            <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide no-scrollbar">
-              <Button
-                variant={selectedTags.length === 0 ? 'default' : 'outline'}
-                size="sm"
-                onClick={() => setSelectedTags([])}
-                className="whitespace-nowrap rounded-full"
+
+            <div className="relative flex items-center">
+              {showLeftArrow && (
+                <div className="absolute left-0 top-0 bottom-0 flex items-center z-10 pr-12 bg-gradient-to-r from-background via-background/90 to-transparent pointer-events-none">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-full bg-white shadow-lg border-slate-200 hover:bg-slate-50 pointer-events-auto"
+                    onClick={() => scroll('left')}
+                  >
+                    <ChevronLeft size={16} />
+                  </Button>
+                </div>
+              )}
+
+              <div
+                ref={scrollContainerRef}
+                onScroll={checkScroll}
+                className="flex gap-2 overflow-x-auto py-1 scrollbar-hide no-scrollbar scroll-smooth w-full"
               >
-                Все теги
-              </Button>
-              {allSpecializations.map((tag) => (
                 <Button
-                  key={tag}
-                  variant={selectedTags.includes(tag) ? 'default' : 'outline'}
+                  variant={selectedTags.length === 0 ? 'default' : 'outline'}
                   size="sm"
-                  onClick={() => toggleTag(tag)}
-                  className="whitespace-nowrap rounded-full transition-all duration-200"
+                  onClick={() => setSelectedTags([])}
+                  className="whitespace-nowrap rounded-full shrink-0"
                 >
-                  {tag}
+                  Все теги
                 </Button>
-              ))}
+                {allSpecializations.map((tag) => (
+                  <Button
+                    key={tag}
+                    variant={selectedTags.includes(tag) ? 'default' : 'outline'}
+                    size="sm"
+                    onClick={() => toggleTag(tag)}
+                    className="whitespace-nowrap rounded-full transition-all duration-200 shrink-0"
+                  >
+                    {tag}
+                  </Button>
+                ))}
+              </div>
+
+              {showRightArrow && (
+                <div className="absolute right-0 top-0 bottom-0 flex items-center z-10 pl-12 bg-gradient-to-l from-background via-background/90 to-transparent pointer-events-none">
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    className="h-8 w-8 rounded-full bg-white shadow-lg border-slate-200 hover:bg-slate-50 pointer-events-auto"
+                    onClick={() => scroll('right')}
+                  >
+                    <ChevronRight size={16} />
+                  </Button>
+                </div>
+              )}
             </div>
           </div>
 
@@ -176,9 +242,41 @@ export default function Home() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-foreground mb-3">
-                Ценовой сегмент
-              </label>
+              <div className="flex items-center gap-2 mb-3">
+                <label className="block text-sm font-medium text-foreground">
+                  Ценовой сегмент
+                </label>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Info size={16} className="text-muted-foreground cursor-help" />
+                  </TooltipTrigger>
+                  <TooltipContent className="p-4 max-w-sm bg-white text-primary border border-border shadow-xl" side="right">
+                    <div className="space-y-3">
+                      <div>
+                        <p className="font-bold text-sm text-blue-700">Эконом</p>
+                        <p className="text-xs text-secondary-foreground leading-relaxed">
+                          Бюджетные решения из ЛДСП и стандартных материалов. Базовая функциональность по доступной цене.
+                          <br/><span className="font-medium text-primary">Диапазон: до 60 000 ₽</span>
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-border">
+                        <p className="font-bold text-sm text-amber-600">Средний</p>
+                        <p className="text-xs text-secondary-foreground leading-relaxed">
+                          Баланс цены и качества. Качественная фурнитура, расширенный выбор фасадов (МДФ, пленка, пластик).
+                          <br/><span className="font-medium text-primary">Диапазон: 60 000 — 200 000 ₽</span>
+                        </p>
+                      </div>
+                      <div className="pt-2 border-t border-border">
+                        <p className="font-bold text-sm text-purple-700">Премиум</p>
+                        <p className="text-xs text-secondary-foreground leading-relaxed">
+                          Эксклюзивные материалы (массив, шпон, эмаль), дизайнерская фурнитура и сложные индивидуальные проекты.
+                          <br/><span className="font-medium text-primary">Диапазон: от 200 000 ₽</span>
+                        </p>
+                      </div>
+                    </div>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
               <div className="flex gap-2 flex-wrap">
                 <Button
                   variant={segmentFilter === 'all' ? 'default' : 'outline'}
@@ -290,7 +388,7 @@ export default function Home() {
                         </p>
                         <div className="flex flex-wrap gap-1">
                           {factory.specialization.map((spec) => (
-                            <Badge key={spec} variant="secondary" className="text-xs">
+                            <Badge key={spec} variant="outline" className="text-[10px] uppercase tracking-wider font-semibold bg-slate-50 text-slate-500 border-slate-200 py-0 px-2 h-5">
                               {spec}
                             </Badge>
                           ))}

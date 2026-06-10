@@ -94,6 +94,10 @@ export const factories: Factory[] = [
     email: 'contact@pinskdrev.by',
     website: 'https://pinskdrev.by',
     established: '1880',
+    projects: [
+      { title: 'Диван Честерфилд', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Гостиная Видана', image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '5',
@@ -125,7 +129,8 @@ export const factories: Factory[] = [
     website: 'https://lazurit.com',
     established: '2004',
     projects: [
-      { title: 'Спальный гарнитур', image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800' }
+      { title: 'Спальный гарнитур', image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Гостиная Белладжио', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800' }
     ],
   },
   {
@@ -140,6 +145,10 @@ export const factories: Factory[] = [
     email: 'contact@angstrem-mebel.ru',
     website: 'https://www.angstrem-mebel.ru',
     established: '1991',
+    projects: [
+      { title: 'Коллекция Кантри', image: 'https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Рабочий кабинет', image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '8',
@@ -153,6 +162,10 @@ export const factories: Factory[] = [
     email: 'service@shatura.com',
     website: 'https://www.shatura.com',
     established: '1961',
+    projects: [
+      { title: 'Офис для стартапа', image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Спальня Rimini', image: 'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '9',
@@ -166,6 +179,10 @@ export const factories: Factory[] = [
     email: 'info@kuxni.net',
     website: 'https://www.kuxni.net',
     established: '1996',
+    projects: [
+      { title: 'Островная кухня', image: 'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Кухня в стиле Лофт', image: 'https://images.unsplash.com/photo-1520699049698-acd2fccb8cc8?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '10',
@@ -179,6 +196,10 @@ export const factories: Factory[] = [
     email: 'market@lerom.ru',
     website: 'https://www.lerom.ru',
     established: '1997',
+    projects: [
+      { title: 'Модульная гостиная Камелия', image: 'https://images.unsplash.com/photo-1593170513904-297f90240973?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Детская Валерия', image: 'https://images.unsplash.com/photo-1519710192539-7475514e305e?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '11',
@@ -192,6 +213,10 @@ export const factories: Factory[] = [
     email: 'info@stolplit.ru',
     website: 'https://www.stolplit.ru',
     established: '1999',
+    projects: [
+      { title: 'Кухня Регина', image: 'https://images.unsplash.com/photo-1556912177-386866f81498?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Прихожая Сити', image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '12',
@@ -205,6 +230,10 @@ export const factories: Factory[] = [
     email: 'sales@mebel-moskva.ru',
     website: 'https://mebel-moskva.ru',
     established: '1926',
+    projects: [
+      { title: 'Подростковая Solo', image: 'https://images.unsplash.com/photo-1519710192539-7475514e305e?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Детская Атлантида', image: 'https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '13',
@@ -218,6 +247,10 @@ export const factories: Factory[] = [
     email: 'shop@triya.ru',
     website: 'https://www.triya.ru',
     established: '2002',
+    projects: [
+      { title: 'Рабочее место студента', image: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Шкаф-купе Престиж', image: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '14',
@@ -231,6 +264,10 @@ export const factories: Factory[] = [
     email: 'info@lubidom.ru',
     website: 'https://lubidom.ru',
     established: '1995',
+    projects: [
+      { title: 'Детская Акварель', image: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Кухня Амели', image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '15',
@@ -244,6 +281,10 @@ export const factories: Factory[] = [
     email: 'office@gomeldrev.by',
     website: 'http://gomeldrev.by',
     established: '1879',
+    projects: [
+      { title: 'Стол из массива дуба', image: 'https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Кабинет руководителя', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '16',
@@ -257,6 +298,10 @@ export const factories: Factory[] = [
     email: 'market@bobruiskmebel.by',
     website: 'https://bobruiskmebel.by',
     established: '1924',
+    projects: [
+      { title: 'Диван кожаный', image: 'https://images.unsplash.com/photo-1550254478-ead40cd82477?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Комод из сосны', image: 'https://images.unsplash.com/photo-1532323544230-7191fd51bc1b?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '17',
@@ -270,6 +315,10 @@ export const factories: Factory[] = [
     email: 'info@vivat-mebel.ru',
     website: 'https://vivat-mebel.ru',
     established: '2010',
+    projects: [
+      { title: 'Кухня Николь', image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Минималистичная кухня', image: 'https://images.unsplash.com/photo-1556912177-386866f81498?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '18',
@@ -283,6 +332,10 @@ export const factories: Factory[] = [
     email: 'info@kostromamebel.ru',
     website: 'http://www.kostromamebel.ru',
     established: '1903',
+    projects: [
+      { title: 'Диван Монте-Карло', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Кровать Лотус', image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '19',
@@ -296,6 +349,10 @@ export const factories: Factory[] = [
     email: 'info@mebel-neman.by',
     website: 'https://mebel-neman.by',
     established: '1991',
+    projects: [
+      { title: 'Гостиная Мадлен', image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Спальня Верона', image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '20',
@@ -309,6 +366,10 @@ export const factories: Factory[] = [
     email: 'info@verona-mobili.ru',
     website: 'https://verona-mobili.ru',
     established: '2000',
+    projects: [
+      { title: 'Кухня Lady', image: 'https://images.unsplash.com/photo-1565182999561-18d7dc63c394?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Кухня Tiffany', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '21',
@@ -321,6 +382,10 @@ export const factories: Factory[] = [
     phone: '8 (812) 407-35-50',
     website: 'https://kuhzavod.ru',
     established: '2014',
+    projects: [
+      { title: 'Скандинавский стиль', image: 'https://images.unsplash.com/photo-1556912177-386866f81498?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Маленькая кухня', image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '22',
@@ -334,6 +399,10 @@ export const factories: Factory[] = [
     email: 'info@molodechnomebel.by',
     website: 'https://www.molodechnomebel.by',
     established: '1954',
+    projects: [
+      { title: 'Гостиная Луи', image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Кожаное кресло Лион', image: 'https://images.unsplash.com/photo-1598198414976-ddb788ec80c1?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '23',
@@ -364,6 +433,10 @@ export const factories: Factory[] = [
     email: 'info@ormatek.com',
     website: 'https://ormatek.com',
     established: '2001',
+    projects: [
+      { title: 'Спальня Life', image: 'https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Подушки для сна', image: 'https://images.unsplash.com/photo-1629949009765-40f745a55165?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '25',
@@ -377,6 +450,10 @@ export const factories: Factory[] = [
     email: 'slonimmebel@mail.ru',
     website: 'https://slonimmebel.by',
     established: '1939',
+    projects: [
+      { title: 'Спальня Джоконда', image: 'https://images.unsplash.com/photo-1560184897-67f4a3f9a7fa?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Гостиная Изотта', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '26',
@@ -407,6 +484,10 @@ export const factories: Factory[] = [
     email: 'info@unitex.ru',
     website: 'https://www.unitex.ru',
     established: '1991',
+    projects: [
+      { title: 'Офис Газпромбанка', image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Зона ресепшн', image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '28',
@@ -420,6 +501,10 @@ export const factories: Factory[] = [
     email: 'info@involux.com',
     website: 'https://involux.com',
     established: '1998',
+    projects: [
+      { title: 'Коллекция офиса Mega', image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Детская Next', image: 'https://images.unsplash.com/photo-1519710192539-7475514e305e?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '29',
@@ -433,6 +518,10 @@ export const factories: Factory[] = [
     email: 'sales@softform.by',
     website: 'http://softform.by',
     established: '1999',
+    projects: [
+      { title: 'Детская Миа', image: 'https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Мебель для кафе', image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '30',
@@ -446,6 +535,10 @@ export const factories: Factory[] = [
     email: 'market@anrex.by',
     website: 'https://anrex.by',
     established: '1997',
+    projects: [
+      { title: 'Гостиная Tiffany', image: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Спальня Oscar', image: 'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '31',
@@ -459,6 +552,10 @@ export const factories: Factory[] = [
     email: 'info@lorena-kuhni.ru',
     website: 'https://lorena-kuhni.ru',
     established: '1989',
+    projects: [
+      { title: 'Кухня Инга', image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Кухня Честер', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '32',
@@ -489,6 +586,10 @@ export const factories: Factory[] = [
     email: 'info@1mf.ru',
     website: 'https://www.1mf.ru',
     established: '1945',
+    projects: [
+      { title: 'Кухня Мюнхен', image: 'https://images.unsplash.com/photo-1565182999561-18d7dc63c394?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Отель Парк Инн', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '34',
@@ -501,6 +602,10 @@ export const factories: Factory[] = [
     phone: '8 (800) 555-12-34',
     website: 'https://pinskdrev.ru',
     established: '1880',
+    projects: [
+      { title: 'Стол Версаль', image: 'https://images.unsplash.com/photo-1577140917170-285929fb55b7?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Библиотека дубовая', image: 'https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '35',
@@ -514,6 +619,10 @@ export const factories: Factory[] = [
     email: 'info@toris.ru',
     website: 'https://www.toris.ru',
     established: '1992',
+    projects: [
+      { title: 'Кровать Тау', image: 'https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Матрас Гранд', image: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '36',
@@ -527,6 +636,10 @@ export const factories: Factory[] = [
     email: 'info@stolline.ru',
     website: 'https://stolline.ru',
     established: '2006',
+    projects: [
+      { title: 'Кухня Мокко', image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Гостиная Вега', image: 'https://images.unsplash.com/photo-1593170513904-297f90240973?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '37',
@@ -539,6 +652,10 @@ export const factories: Factory[] = [
     phone: '+7 (831) 211-33-33',
     website: 'https://grinvich-nn.ru',
     established: '2008',
+    projects: [
+      { title: 'Кухня в коттедж', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Кухня Прованс', image: 'https://images.unsplash.com/photo-1556912177-386866f81498?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '38',
@@ -551,6 +668,10 @@ export const factories: Factory[] = [
     phone: '8 (800) 222-30-31',
     website: 'https://kuhni-express.ru',
     established: '2012',
+    projects: [
+      { title: 'Кухня за 10 дней', image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Модульный проект', image: 'https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '39',
@@ -563,6 +684,10 @@ export const factories: Factory[] = [
     phone: '+7 (495) 785-50-50',
     website: 'http://www.elt.ru',
     established: '1995',
+    projects: [
+      { title: 'Кухня Виола', image: 'https://images.unsplash.com/photo-1565182999561-18d7dc63c394?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Кухня Квадро', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&q=80&w=800' }
+    ],
   },
   {
     id: '40',
@@ -576,5 +701,9 @@ export const factories: Factory[] = [
     email: 'info@riva.ru',
     website: 'https://riva.ru',
     established: '2002',
+    projects: [
+      { title: 'Офис Технопарка', image: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&q=80&w=800' },
+      { title: 'Рабочее место Riva', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800' }
+    ],
   }
 ];
